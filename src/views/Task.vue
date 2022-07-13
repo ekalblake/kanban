@@ -2,6 +2,7 @@
   <div class="task-view">
     <div class="flex flex-col flex-grow items-start justify-between px-4">
       <input
+        placeholder="Agrega un título"
         type="text"
         class="p-2 w-full mr-2 block text-xl font-bold"
         :value="task.name"
@@ -10,6 +11,7 @@
       >
 
       <textarea
+        placeholder="Agrega tu descripción"
         class="relative w-full bg-transparent px-2 border mt-2 h-64 border-none leading-normal"
         :value="task.description"
         @change="updateTaskProperty($event, 'description')"
@@ -30,11 +32,13 @@ export default {
   },
   methods: {
     updateTaskProperty (e, key) {
-      this.$store.commit('UPDATE_TASK', {
-        task: this.task,
-        key,
-        value: e.target.value
-      })
+      if (e.target.value !== '') {
+        this.$store.commit('UPDATE_TASK', {
+          task: this.task,
+          key,
+          value: e.target.value
+        })
+      }
     }
   }
 }

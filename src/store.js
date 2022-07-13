@@ -45,10 +45,7 @@ export default new Vuex.Store({
     MOVE_TASK (state, { fromTasks, toTasks, fromTaskIndex, toTaskIndex }) {
       const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0]
 
-      console.log(toTaskIndex)
-
       if (toTaskIndex === undefined || toTaskIndex === null) {
-        console.log(toTasks)
         fromTasks.splice(fromTaskIndex, 0)
       } else {
         toTasks.splice(toTaskIndex, 0, taskToMove)
